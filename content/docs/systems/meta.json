@@ -1,4 +1,8 @@
 {
   "title": "制度",
-  "pages": ["teian", "salary", "expenses", "my-coach", "meguri", "benefits"]
+  "pages": [
+    "index",
+    "teian",
+    "my-coach"
+  ]
 }

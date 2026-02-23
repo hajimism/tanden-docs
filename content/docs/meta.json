@@ -1,12 +1,15 @@
 {
   "pages": [
     "index",
-    "philosophy",
-    "principles",
-    "systems",
-    "lifecycle",
-    "tools",
     "culture",
+    "work-style",
+    "onboarding",
+    "systems",
+    "finance",
+    "tools",
+    "hiring",
+    "---事業---",
+    "saas",
     "unexplored"
   ]
 }

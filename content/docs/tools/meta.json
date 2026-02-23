@@ -1,9 +1,8 @@
 {
-  "title": "ツール群",
+  "title": "社内ツール",
   "pages": [
     "index",
-    "---自作ツール---",
-    "keiraku",
+    "meibo",
     "teian",
     "karute",
     "tsudzuri",
@@ -11,7 +10,7 @@
     "meguri",
     "motode",
     "noroshi",
-    "---",
+    "shiorie",
     "integration"
   ]
 }

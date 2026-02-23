@@ -18,3 +18,9 @@ http://localhost:3000 でプレビューできます。
 ## ドキュメントの追加・編集
 
 `content/docs/` 配下に `.mdx` ファイルを追加・編集してください。
+
+## デプロイ
+
+[Vercel](https://vercel.com) でホスティング。`main` ブランチへのpushで自動デプロイされます。
+
+https://tanden-docs.vercel.app

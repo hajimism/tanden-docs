@@ -1,16 +1,38 @@
 ---
 title: システム連携
-description: Tandenツール群のシステム間連携マップ
+description: Tanden社内ツールのシステム間連携マップ
 ---
+
+```mermaid
+graph TB
+  Shiorie <-->|MCP| Meibo
+  Shiorie <-->|MCP| Tsuzuri
+  Shiorie <-->|MCP| Okuri
+  Shiorie <-->|MCP| Teian
+  Shiorie <-->|MCP| Karute
+  Shiorie <-->|MCP| Meguri
+  Shiorie <-->|MCP| Motode
+  Shiorie <-->|MCP| Noroshi
+  Shiorie <-.->|参照| Handbook
+  Teian -->|経費精算| Motode
+  Meibo -->|相手情報を参照| Okuri
+  Meibo -->|求人レコメンド| Noroshi
+  Tsuzuri -->|ステッカーでポイント加算| Meguri
+  Okuri -->|送信5pt・ステッカー100pt| Meguri
+  Motode -->|学び投資でポイント消費| Meguri
+  全ツール -.->|指標を自動集計・可視化| Karute
+```
+
+## 連携一覧
 
 | 起点 | 連携先 | 内容 |
 |---|---|---|
-| Keiraku | Noroshi | スキルや魂のカタチに合う求人をレコメンド |
-| Keiraku | Okuri | フィードバック送信時に相手情報を参照 |
-| Tsudzuri | Meguri | ステッカー付与で自動ポイント加算 |
+| Shiorie | 全ツール | MCP経由で情報の読み書き |
+| Shiorie | ハンドブック | 制度・カルチャー情報を参照 |
+| Meibo | Noroshi | スキルや魂のカタチに合う求人をレコメンド |
+| Meibo | Okuri | フィードバック送信時に相手情報を参照 |
+| Tsuzuri | Meguri | ステッカー付与で自動ポイント加算 |
 | Okuri | Meguri | 送信で5pt、ステッカーで100pt自動加算 |
-| Teian | Keiraku | 入社テイアン承認でKeirakuに自動登録 |
-| Motode | Teian | 上限超過時にテイアンを自動起票 |
+| Teian | Motode | テイアン後に経費精算 |
 | Motode | Meguri | 学び投資でポイントを自動消費 |
-| Noroshi | Keiraku | プロジェクト参加確定でGroupを自動作成 |
 | 全ツール | Karute | 各種指標を自動集計・可視化 |
