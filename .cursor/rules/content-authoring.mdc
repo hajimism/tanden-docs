@@ -1,0 +1,58 @@
+---
+description: Rules for writing MDX docs and managing navigation
+globs: content/docs/**/*.mdx, content/docs/**/meta.json
+alwaysApply: false
+---
+
+# Content Authoring
+
+## Page structure
+
+7 top-level sections, each a separate directory:
+
+| Directory | Purpose |
+|---|---|
+| `culture/` | Identity — mission, vision, values, stance, practices, mood |
+| `hiring/` | Joining & leaving the company |
+| `onboarding/` | Post-hire ramp-up process |
+| `work-style/` | How we work — remote, flex-time, leave, communication, projects, side-job |
+| `systems/` | Policies — teian, coaching |
+| `finance/` | Money — budget, salary, expenses, Meguri points, learning support |
+| `tools/` | Internal tools & SaaS integrations |
+
+- Every page belongs to one of these sections. Create a new section only if none fits.
+- Never name a page the same as its parent directory. Use `index.mdx` (title: 概要) as the section-level summary page.
+- When a concept spans systems and tools (e.g. teian, meguri), put Why/What in `systems/`, How in `tools/`, and cross-link.
+
+## MDX frontmatter
+
+Uses Fumadocs `pageSchema`. Minimum: `title`.
+
+```mdx
+---
+title: Page Title
+description: Optional description
+---
+```
+
+## meta.json
+
+Each directory has `meta.json` defining sidebar order. Values are filenames without extension.
+
+```json
+{ "title": "Section", "pages": ["index", "page-a", "page-b"] }
+```
+
+- `"---Label---"` inserts a separator
+- Always add new pages to `meta.json`
+
+## Built-in components
+
+`<Cards>` + `<Card>`, `<Callout>`, `<Tabs>` + `<Tab>`
+
+## Language
+
+All content in Japanese.
+
+- 本文は「ですます調」で統一する（である・だ・している → です・ます・しています）
+- ただし箇条書きの体言止めはOK

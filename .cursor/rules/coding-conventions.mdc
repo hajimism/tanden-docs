@@ -1,0 +1,17 @@
+---
+description: Coding style and tooling conventions
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Coding Conventions
+
+- Biome for format/lint (no ESLint/Prettier). 2-space indent. Import ordering by Biome.
+- Prefer functional, expression-oriented style.
+- Tailwind v4: CSS-based config (`@import 'tailwindcss'`). No `tailwind.config.js`.
+- Fumadocs design tokens: `fd-primary`, `fd-muted-foreground`, `fd-accent`, etc.
+- `cn()` = `twMerge` alias from `lib/cn.ts`.
+- Path alias: `@/*` → project root.
+- Client components: explicit `'use client'`.
+- Icons: `lucide-react`.
+- Respond in Japanese.

@@ -1,0 +1,40 @@
+---
+description: Project overview and agent working principles
+alwaysApply: true
+---
+
+# Agent Working Principles
+
+- **Minimize context usage**: Prefer CLI tools (`rg`, `glob`, `ls`) over reading entire files. Read only the lines you need.
+- **Targeted reads**: Use `rg` to locate relevant code first, then read only that range. Never read a whole file "just in case."
+- **Batch checks**: Run `bun run lint` and `bun run types:check` via CLI rather than reading files to manually spot issues.
+- **Verify before reading**: Use `ls` or `glob` to confirm file existence and structure before reading contents.
+- **Skip redundant exploration**: If a prior tool call already gave you the answer, don't re-read the same file.
+- **Finish fast**: Design each task as the shortest sequence of tool calls that achieves the goal.
+
+---
+
+# Tanden Open Handbook
+
+Open handbook site for Tanden Inc. — publishing company culture, policies, and ways of working.
+
+## Stack
+
+Next.js 16 (App Router) + Fumadocs + React 19 + TypeScript + Tailwind CSS v4 (no tailwind.config) + Biome (no ESLint/Prettier) + bun. Deployed on Vercel.
+
+## Structure
+
+- `content/docs/` — MDX source files (philosophy, principles, systems, lifecycle, tools)
+- `app/docs/[[...slug]]/` — Doc pages via Fumadocs
+- `app/(home)/` — Landing page
+- `app/llms.txt/`, `llms-full.txt/`, `llms.mdx/` — LLM-readable endpoints
+- `app/og/docs/` — OG image generation
+- `components/ai/` — LLMCopyButton, ViewOptions
+- `lib/source.ts` — Fumadocs source loader (`source.getPage()`, `source.getPageTree()`)
+- `lib/layout.shared.tsx` — Git config (`tanden-inc/tanden-docs`) and shared layout options
+- `source.config.ts` — Fumadocs MDX config, content dir: `content/docs`
+
+## Commands
+
+- `bun run dev` / `bun run build` / `bun run lint` / `bun run format`
+- `bun run types:check` — fumadocs-mdx → next typegen → tsc
