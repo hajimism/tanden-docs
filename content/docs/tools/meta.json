@@ -1,5 +1,5 @@
 {
-  "title": "社内ツール",
+  "title": "Tanden Toolkit",
   "pages": [
     "index",
     "meibo",
@@ -8,8 +8,13 @@
     "tsudzuri",
     "okuri",
     "meguri",
+    "warifu",
+    "kodou",
     "motode",
     "noroshi",
+    "dandori",
+    "soubi",
+    "uneri",
     "shiorie",
     "integration"
   ]

@@ -1,10 +1,11 @@
 ---
 title: システム連携
-description: Tanden社内ツールのシステム間連携マップ
+description: Tanden Toolkitのシステム間連携マップ
 ---
 
 ```mermaid
 graph TB
+  Uneri -->|ネイティブ統合| Shiorie
   Shiorie <-->|MCP| Meibo
   Shiorie <-->|MCP| Tsuzuri
   Shiorie <-->|MCP| Okuri
@@ -13,13 +14,27 @@ graph TB
   Shiorie <-->|MCP| Meguri
   Shiorie <-->|MCP| Motode
   Shiorie <-->|MCP| Noroshi
+  Shiorie <-->|MCP| Warifu
+  Shiorie <-->|MCP| Kodou
+  Shiorie <-->|MCP| Dandori
+  Shiorie <-->|MCP| Soubi
   Shiorie <-.->|参照| Handbook
+  Uneri -->|ハドル文字起こし| Dandori
+  Kodou -->|実績工数| Dandori
+  Dandori -->|タスク工数| Warifu
+  全ツール -->|通知| Uneri
   Teian -->|経費精算| Motode
   Meibo -->|相手情報を参照| Okuri
   Meibo -->|求人レコメンド| Noroshi
   Tsuzuri -->|ステッカーでポイント加算| Meguri
   Okuri -->|送信5pt・ステッカー100pt| Meguri
   Motode -->|学び投資でポイント消費| Meguri
+  Motode -->|経費をコードにチャージ| Warifu
+  Kodou -->|人件費をコードにチャージ| Warifu
+  Soubi -->|ライセンス費をコードにチャージ| Warifu
+  Soubi -->|一人あたりコストを可視化| Motode
+  Warifu -->|コード別収支を集計| Karute
+  Kodou -->|工数データを集計| Karute
   全ツール -.->|指標を自動集計・可視化| Karute
 ```
 
@@ -27,6 +42,8 @@ graph TB
 
 | 起点 | 連携先 | 内容 |
 |---|---|---|
+| Uneri | Shiorie | ネイティブ統合。チャットからToolkit全操作 |
+| Uneri | 全ツール | 全イベントの通知ハブ |
 | Shiorie | 全ツール | MCP経由で情報の読み書き |
 | Shiorie | ハンドブック | 制度・カルチャー情報を参照 |
 | Meibo | Noroshi | スキルや魂のカタチに合う求人をレコメンド |
@@ -35,4 +52,13 @@ graph TB
 | Okuri | Meguri | 送信で5pt、ステッカーで100pt自動加算 |
 | Teian | Motode | テイアン後に経費精算 |
 | Motode | Meguri | 学び投資でポイントを自動消費 |
+| Motode | Warifu | 経費をWarifuコードにチャージ |
+| Kodou | Warifu | 社内単価 × 時間で人件費をコードにチャージ |
+| Dandori | Warifu | タスク工数をコードにチャージ |
+| Uneri | Dandori | ハドル文字起こしからWBS自動更新 |
+| Kodou | Dandori | 実績工数を反映し遅延予測 |
+| Soubi | Warifu | 申請制SaaSのライセンス費をコードにチャージ |
+| Soubi | Motode | 一人あたりSaaSコストを可視化 |
+| Warifu | Karute | コード別・レーベル別の収支を集計 |
+| Kodou | Karute | 工数データを集計・可視化 |
 | 全ツール | Karute | 各種指標を自動集計・可視化 |
