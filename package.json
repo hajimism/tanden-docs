@@ -9,6 +9,7 @@
     "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
     "postinstall": "fumadocs-mdx",
     "lint": "biome check",
+    "lint:links": "bun run scripts/check-links.ts",
     "format": "biome format --write"
   },
   "dependencies": {
