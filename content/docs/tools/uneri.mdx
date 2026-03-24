@@ -9,6 +9,10 @@ description: Shiorieネイティブ統合のチャットツール。Tanden Toolk
 
 このツールが伝えるコンテキストは**「一人の声が組織のうねりになる」**です。日常の会話・共有・議論がそのまま組織を動かす力になります。チャットは情報を流すパイプではなく、うねりを生む場です。
 
+<Callout>
+現在、社内チャットはSlackを使用しています。Uneriは[フェーズ3](/docs/saas/strategy)で導入予定です。それまでは Slack + Shiorie ボットの構成で運用し、Uneriリリース後に移行します。本ページはUneriの設計仕様です。
+</Callout>
+
 ## Slackとの違い
 
 Uneriは汎用チャットツールではなく、Tanden Toolkitのために設計された専用チャットです。
@@ -144,6 +148,30 @@ Shiorie: 今日の出退勤とチャージ先を教えてください。
 あなた: 9時-18時、PJT-ACMQ1に6h、SLFに2h
 Shiorie: Kodouに記録しました。Tsuzuriもまだ未提出ですが、一緒に書きますか？
 ```
+
+## 技術ベース候補
+
+Uneriはフルスクラッチではなく、OSSベースのカスタム実装を想定しています。
+
+### 推奨構成：Matrix + LiveKit
+
+| レイヤー | OSS | 役割 |
+|---|---|---|
+| **メッセージング基盤** | [Matrix](https://matrix.org/)（Synapse or Conduit） | チャンネル・DM・スレッド・E2EE・検索。オープンなプロトコル標準 |
+| **クライアント** | matrix-js-sdk + カスタムReact UI | Toolkit統合のUI。Shiorieをネイティブに埋め込む |
+| **リアルタイム通話** | [LiveKit](https://livekit.io/) | ハドル・ビデオ通話・画面共有・文字起こし。Go製WebRTC SFU |
+
+### なぜこの構成か
+
+- **Matrixはプロトコル**であってUIではないため、Uneri独自の体験（Toolkit操作パネル）を自由に設計できます
+- **LiveKitのAgent Framework**がShiorieと相性が良く、通話中にリアルタイムで発言を解析し[Dandori](/docs/tools/dandori)のタスク更新を提案する体験が作れます
+- **E2EEがプロトコルレベルで組み込み済み**。セキュリティ要件への対応が楽になります
+- Conduit（Rust製Matrixサーバー）を使えばCloudflareスタックとの親和性が高くなります
+- AFFiNE（ドキュメント基盤の候補）と合わせると、チャット・ドキュメント・通話がすべてOSSベースのカスタム実装で統一されます
+
+### フォールバック：Mattermost
+
+Matrix + LiveKitの開発が間に合わない場合、[Mattermost](https://mattermost.com/)（Go + React）をベースにする選択肢もあります。プラグインAPIでShiorieを統合し、UIをカスタマイズして提供します。基本機能が揃っているため早く出せますが、Toolkit統合の深さには限界があります。
 
 ## シオリエ連携
 
