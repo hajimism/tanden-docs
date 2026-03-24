@@ -1,13 +1,16 @@
-import type { Metadata } from 'next';
 import { RootProvider } from 'fumadocs-ui/provider/next';
-import './global.css';
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import './global.css';
 
 const inter = Inter({
   subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_URL ?? 'https://tanden-docs.vercel.app',
+  ),
   title: {
     default: 'Tanden Open Handbook',
     template: '%s | Tanden Open Handbook',
